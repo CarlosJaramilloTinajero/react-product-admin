@@ -1,4 +1,4 @@
-import { makeApiRequest } from "../Auxiliar";
+import { makeApiRequest } from "../auxiliar";
 
 export const getCategoriesAPI = ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({

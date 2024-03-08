@@ -1,19 +1,20 @@
 import './App.css'
-import { TableBrands } from './components/Brands/TableBrands'
-import { TableCategories } from './components/Categories/TableCategories'
-import TableProducts from './components/Products/TableProducts'
-import { TableSubcategory } from './components/Subcategories/TableSubcategory'
+import { MasterLayout } from './components/Layout/MasterLayout'
+import { ProductView } from './views/product/ProductView';
+import { CategoryView } from './views/category/CategoryView';
+import { BrandView } from './views/brand/BrandView';
+import { SubacetgoryView } from './views/subcategory/SubactegoryView';
 
 function App() {
 
   return (
-    <div className="container">
-      {/* <TableProducts /> */}
-      {/* <TableBrands /> */}
-      {/* <TableCategories /> */}
-      <TableSubcategory />
-    </div>
-  )
+    <MasterLayout>
+      <ProductView />
+      {/* <CategoryView /> */}
+      {/* <BrandView /> */}
+      {/* <SubacetgoryView /> */}
+    </MasterLayout>
+  );
 }
 
 export default App

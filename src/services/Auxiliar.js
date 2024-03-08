@@ -7,6 +7,7 @@ export const fetchData = async ({ url, method, requestData = {} }) => {
         return data && data.status ? data : null;
     } catch (error) {
         console.log(error);
+        notify({ msg: 'Error en el servidor', type: 'error' });
         return null;
     }
 }

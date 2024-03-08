@@ -1,4 +1,4 @@
-import { makeApiRequest } from "../Auxiliar";
+import { makeApiRequest } from "../auxiliar";
 
 export const updateProduct = async ({ formData, funcSuccess = () => { }, funcError = () => { }, idProduct, showNotify = false }) => {
     if (!idProduct) return null;
@@ -49,7 +49,7 @@ export const deleteProductByID = async ({ id, funcSuccess = () => { }, funcError
         funcError,
         showNotify,
         msgSuccess: 'Productos eliminado correctamente',
-        msgError: 'Error al eliminar el productos',
+        msgError: 'Error al eliminar el producto',
     });
 }
 

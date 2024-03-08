@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Productos",
+        "icon": "fa-solid fa-store",
+        "link": ""
+    },
+    {
+        "name": "Categorias",
+        "icon": "fa-solid fa-table-list",
+        "link": ""
+    },
+    {
+        "name": "Subcategiras",
+        "icon": "fa-solid fa-rectangle-list",
+        "link": ""
+    },
+    {
+        "name": "Marca",
+        "icon": "fa-solid fa-ring",
+        "link": ""
+    }
+]

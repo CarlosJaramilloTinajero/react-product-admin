@@ -53,14 +53,20 @@ export function TableBrands({ }) {
 
     return (
         <>
+            <section className="container-view-header">
+                <div className="title-view">
+                    <p>Lista de marcas</p>
+                </div>
+                <div className="button-actions">
+                    <button className="btn btn-primary btn-sm" onClick={() => setShowAddUpdateModal(true)}>Agregar</button>
+                </div>
+            </section>
+
             <FiltersBrand setFilter={setFilterValue} />
 
-            <div className="d-flex justify-content-end mt-3 px-3">
-                <button className="btn btn-primary btn-sm" onClick={() => setShowAddUpdateModal(true)}>Agregar</button>
-            </div>
             <div className="table-responsive p-4 pt-0 mt-0">
                 <div className="d-flex mt-0">
-                    <label htmlFor="per-page-label" className="perpage-font form-label mt-2 me-2 text-white">Por pagina: </label>
+                    <label htmlFor="per-page-label" className="perpage-font form-label mt-2 me-2 text-black">Por pagina: </label>
                     <select defaultValue={filters.perPage} name="perPage "
                         onChange={e => {
                             setFilterValue({ name: 'perPage', value: e.target.value })
@@ -72,7 +78,7 @@ export function TableBrands({ }) {
                         <option defaultValue="40">40</option>
                     </select>
                 </div>
-                <table className="table table-striped table-sm m-auto mt-1 rounded-3 table-dark">
+                <table className="table table-striped table-sm m-auto mt-1 rounded-3 table-hover table-light">
                     <thead>
                         <tr>
                             <th>#</th>

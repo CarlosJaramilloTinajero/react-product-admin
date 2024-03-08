@@ -18,12 +18,11 @@ function FiltersProducts({ setFilters, filters }) {
 
     return (
         <>
-            {/* REVISAR FILTRSO, que funcionen bien :) */}
             <section className="filters p-3 pb-0">
                 <div className="row mb-2">
 
                     <div className="col-12">
-                        <input type="text" onChange={e => e.target.value.length > 2 ? setFiltersTo({ name: 'search', value: e.target.value }) : null} placeholder="Buscar por nombre o SKU..." className="form-control mb-2" />
+                        <input type="text" onChange={e => e.target.value.length > 2 || e.target.value.length === 0 ? setFiltersTo({ name: 'search', value: e.target.value }) : null} placeholder="Buscar por nombre o SKU..." className="form-control mb-2" />
                     </div>
 
                     <div className="row row-cols-lg-5 row-cols-md-3 row-cols-2 m-auto">
@@ -50,7 +49,7 @@ function FiltersProducts({ setFilters, filters }) {
                                     }
                                     const obj = JSON.parse(e.target.value);
                                     setFiltersTo({ name: 'categorySlug', value: obj.slug });
-                                    setSelectedCategory(obj.id);
+                                    setSelectedCategory({ slug: obj.slug, id: obj.id });
                                 }}>
                                 <option value="">Categoria</option>
                                 {
@@ -66,11 +65,11 @@ function FiltersProducts({ setFilters, filters }) {
                             selectedCategory &&
                             <div className="col mt-2">
                                 <select defaultValue={""} className="form-select"
-                                    onChange={e => setFiltersTo({ name: 'categorySlug', value: e.target.value })}>
+                                    onChange={e => setFiltersTo({ name: 'categorySlug', value: e.target.value || selectedCategory.slug || '' })}>
                                     <option value="">Subcategoria</option>
                                     {
                                         subcategories.length > 0 &&
-                                        subcategories.filter(value => value.category_id == selectedCategory).map((value) => (
+                                        subcategories.filter(value => value.category_id == selectedCategory.id).map((value) => (
                                             <option key={value.slug} value={value.slug}>{value.name}</option>
                                         ))
                                     }
