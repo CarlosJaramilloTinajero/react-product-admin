@@ -1,5 +1,20 @@
-export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) {
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) {
+    const navigate = useNavigate();
+
+    const logoutUser = async () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_name');
+        navigate('/login');
+    };
+
+    const [userName, setUserName] = useState('User');
+
+    useEffect(() => {
+        setUserName(localStorage.getItem('user_name') || userName);
+    }, []);
     return (
         <nav className="navbar">
             {
@@ -21,11 +36,20 @@ export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) 
                     <img className="rounded-circle" src="https://ui-avatars.com/api/?name=Admin&size=100" alt="img-user" />
                 </div>
 
-                <p className="name">
-                    <strong>Admin</strong> <br />
-                    Administrador
+                <p className="name d-none d-md-block">
+                    <strong>{userName}</strong> <br />
+                    {userName === 'admin' ? 'Administrador' : userName}
                 </p>
+
+                <div className="user-info-target">
+                    <p className="title">Hola admin!</p>
+                    <div className="options">
+                        <div className="option" onClick={logoutUser}>
+                            <i className="fa-solid fa-power-off"></i> <span>Salir</span>
+                        </div>
+                    </div>
+                </div>
             </section>
-        </nav >
-    )
+        </nav>
+    );
 }

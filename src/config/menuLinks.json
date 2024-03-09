@@ -2,21 +2,21 @@
     {
         "name": "Productos",
         "icon": "fa-solid fa-store",
-        "link": ""
+        "link": "productos"
     },
     {
         "name": "Categorias",
         "icon": "fa-solid fa-table-list",
-        "link": ""
+        "link": "categorias"
     },
     {
         "name": "Subcategiras",
         "icon": "fa-solid fa-rectangle-list",
-        "link": ""
+        "link": "subcategorias"
     },
     {
         "name": "Marca",
         "icon": "fa-solid fa-ring",
-        "link": ""
+        "link": "marcas"
     }
 ]

@@ -2,7 +2,6 @@ function Pagination({ gotoPage, pages, page }) {
 
     // Maximo de links de paginas de la tabla
     const pagesLinkMax = 10;
-    const pageArray = Array.from({ length: pagesLinkMax }, (_, index) => index);
 
     const generateButtons = () => {
         const buttons = [];
@@ -30,32 +29,6 @@ function Pagination({ gotoPage, pages, page }) {
 
                 {page > pagesLinkMax && <button className={`page-link ${page === 3 ? 'link-selected' : ''}`}
                     onClick={() => gotoPage(3)}> 3</button>}
-
-                {/* {
-                    pageArray.map(index => (
-                        <div key={index}>
-                            {
-                                index + (page - pagesLinkMax) > 0 &&
-                                <button className={`page-link ${page === (index + (page - pagesLinkMax)) ? 'link-selected' : ''} `}
-                                    onClick={() => gotoPage((index + (page - pagesLinkMax)))}>
-                                    {(index + (page - pagesLinkMax))} </button>
-                            }
-                        </div>
-                    ))
-                }
-
-                {
-                    pageArray.map(index => (
-                        <div key={index * 2}>
-                            {
-                                index + page < pages + 1 &&
-                                <button className={page === (index + page) ? 'page-link link-selected' : 'page-link'}
-                                    onClick={() => gotoPage(index + page)}>{index + page
-                                    }</button>
-                            }
-                        </div>
-                    ))
-                } */}
 
                 {generateButtons()}
 

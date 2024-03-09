@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import menuLinks from '../../config/menuLinks.json';
 
 export function Sidebar({ expandedSidebar }) {
     return (
         <div style={{ left: expandedSidebar ? '0' : '-185px' }} className="sidebar" >
             <section className={`sidebar-header ${!expandedSidebar ? 'contracted' : ''}`}>
-                <img src="https://carlosjaramillo.beauty/portafolio/assets/logo-mervins.webp" alt="" />
+                <Link to="/">
+                    <img src="https://carlosjaramillo.beauty/portafolio/assets/logo-mervins.webp" alt="" />
+                </Link>
             </section>
             <section className={`menu-container d-flex ${!expandedSidebar ? 'justify-content-end p-2' : ''}`}>
                 <div className={`menu-container-expand ${expandedSidebar ? 'show' : 'hidden left'}`}>
@@ -13,10 +16,12 @@ export function Sidebar({ expandedSidebar }) {
                         {
                             menuLinks.length > 0 &&
                             menuLinks.map((value, index) => (
-                                <li key={index} className="menu-link">
-                                    <i className={value.icon}></i>
-                                    <p>{value.name}</p>
-                                </li>
+                                <Link key={index} to={`../${value.link}`} >
+                                    <li className="menu-link">
+                                        <i className={value.icon}></i>
+                                        <p>{value.name}</p>
+                                    </li>
+                                </Link>
                             ))
                         }
                     </ul>
@@ -28,7 +33,9 @@ export function Sidebar({ expandedSidebar }) {
                             menuLinks.length > 0 &&
                             menuLinks.map((value, index) => (
                                 <li key={index} className="menu-link">
-                                    <i className={value.icon} />
+                                    <Link to={`../${value.link}`}>
+                                        <i className={value.icon} />
+                                    </Link>
                                     <p className='menu-link-name-overflow'>{value.name}</p>
                                 </li>
                             ))
