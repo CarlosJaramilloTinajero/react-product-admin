@@ -444,6 +444,34 @@ label,
     object-fit: contain;
 }
 
+.sidebar .sidebar-header.contracted p {
+    font-size: 7px !important;
+    left: 75%;
+    transform: translate(0, -50%);
+}
+
+.sidebar .sidebar-header p {
+    margin-bottom: 0;
+    text-align: center;
+    text-decoration: unset !important;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    color: white;
+    font-size: 23px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, .4);
+}
+
+.sidebar .sidebar-header p:hover {
+    color: white !important;
+}
+
 .sidebar .menu-container {
     width: 100%;
     padding: 10px 15px;
@@ -583,8 +611,7 @@ label,
     max-width: 700px;
     padding: 50px 30px;
     border-radius: 3px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-    /* background-color: rgba(13, 115, 198, 0.8); */
+    box-shadow: 0 0 25px rgba(0, 0, 0, .6);
     background-color: rgb(0, 102, 165);
 }
 
@@ -605,4 +632,62 @@ label,
 
 .container-form .footer .router-link {
     color: aquamarine;
+}
+
+/* Footer */
+footer {
+    width: 100vw;
+    background-color: white;
+    margin-bottom: 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+    padding: 60px 10px;
+    padding-bottom: 40px;
+}
+
+footer .footer-container {
+    /* background-color: aqua; */
+    transition: margin-left .4s ease-in-out;
+}
+
+.footer-container .title-footer {
+    margin-bottom: 0;
+    color: rgba(0, 0, 0, .75);
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px !important;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 132, 255, 0.2);
+}
+
+.footer-container .title-footer span {
+    color: rgba(0, 0, 0, .95);
+}
+
+.footer-container .tecnlogies-container {
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    grid-gap: 30px;
+}
+
+.footer-container .tecnlogies-container .tecnlogies .title {
+    text-align: center;
+    color: rgba(0, 0, 0, .9);
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 13px !important;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 132, 255, 0.2);
+}
+
+.footer-container .tecnlogies-container .tecnlogies .tecnology {
+    color: rgba(0, 0, 0, .8);
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px !important;
+    margin-bottom: 5px;
 }

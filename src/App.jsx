@@ -12,6 +12,7 @@ import { SubacetgoryView } from './views/subcategory/SubactegoryView';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { redirect } from "react-router-dom";
 import { LoginView } from './views/auth/LoginView';
+import { baseURL } from './constants';
 
 function App() {
   const requiredAuth = async () => {
@@ -61,7 +62,10 @@ function App() {
       element: <LoginView />,
       loader: requiredGuest
     }
-  ]);
+  ],
+    {
+      basename: baseURL
+    });
 
   return (
     <RouterProvider router={router} />

@@ -29,3 +29,7 @@ export const FORMDATAMODALSUBCATEGORYCONST = {
     category_id: '',
     type: 'update_modal'
 };
+
+export const APP_DEBUG = true;
+
+export const baseURL = APP_DEBUG ? '/' : '/products-hub-admin/';

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
+import { Footer } from "./Footer";
 
 export function MasterLayout({ children }) {
     const [expandedSidebar, setExpandedSidebar] = useState(true);
@@ -38,6 +39,7 @@ export function MasterLayout({ children }) {
             <div style={{ marginLeft: expandedSidebar ? '265px' : '80px' }} className="cotainer-master">
                 {children}
             </div>
+            <Footer expandedSidebar={expandedSidebar} />
         </>
     );
 }

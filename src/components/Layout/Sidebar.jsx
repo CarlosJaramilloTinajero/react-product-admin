@@ -6,7 +6,9 @@ export function Sidebar({ expandedSidebar }) {
         <div style={{ left: expandedSidebar ? '0' : '-185px' }} className="sidebar" >
             <section className={`sidebar-header ${!expandedSidebar ? 'contracted' : ''}`}>
                 <Link to="/">
-                    <img src="https://carlosjaramillo.beauty/portafolio/assets/logo-mervins.webp" alt="" />
+                    {/* <img src="https://carlosjaramillo.beauty/portafolio/assets/logo-mervins.webp" alt="" /> */}
+                    {/* <img src='./img/logo-1.png' alt="logo products hub" /> */}
+                    <p>PRODUCTS HUB</p>
                 </Link>
             </section>
             <section className={`menu-container d-flex ${!expandedSidebar ? 'justify-content-end p-2' : ''}`}>

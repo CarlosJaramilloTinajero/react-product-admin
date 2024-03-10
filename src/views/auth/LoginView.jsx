@@ -8,7 +8,7 @@ export function LoginView() {
 
     const [formData, setFormdata] = useState({
         name: 'admin',
-        password: 'contraseña'
+        password: 'admin1234'
     });
 
     const handleChange = e => {
@@ -25,8 +25,7 @@ export function LoginView() {
 
         loginAPI({
             credentials: formData,
-            funcSuccess: response => {
-                const { data } = response;
+            funcSuccess: data => {
                 localStorage.setItem('token', `${data.token_type} ${data.access_token}`);
                 localStorage.setItem('user_name', data.user_name)
                 navigate('/');

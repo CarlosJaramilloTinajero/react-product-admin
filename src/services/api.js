@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = 'http://127.0.0.1:8000/api/';
+const production = true;
+const baseURL = production ? 'https://api.carlosjaramillo.beauty/api/' : 'http://127.0.0.1:8000/api/';
 
 const axiosC = axios.create({
     baseURL: baseURL,
