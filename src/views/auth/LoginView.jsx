@@ -35,28 +35,31 @@ export function LoginView() {
     }
 
     return (
-        <div className="container-form">
-            <p className="title">Login</p>
-            <form onSubmit={handleSubmit}>
-                <div className="form-floating mb-4">
-                    <input required type="text" name='name' onChange={handleChange} className="form-control" defaultValue={formData.name} placeholder="Nombre" id="floatingTextareaName" />
-                    <label htmlFor="floatingTextareaName">Nombre</label>
-                </div>
+        <>
+            <div className="login-back"></div>
+            <div className="container-form">
+                <p className="title">Login</p>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-floating mb-4">
+                        <input required type="text" name='name' onChange={handleChange} className="form-control" defaultValue={formData.name} placeholder="Nombre" id="floatingTextareaName" />
+                        <label htmlFor="floatingTextareaName">Nombre</label>
+                    </div>
 
-                <div className="form-floating mb-4">
-                    <input required type="password" name='password' onChange={handleChange} defaultValue={formData.password} className="form-control" placeholder="Contraseña"
-                        id="floatingTextareaPassword" />
-                    <label htmlFor="floatingTextareaPassword">Contraseña</label>
-                </div>
+                    <div className="form-floating mb-4">
+                        <input required type="password" name='password' onChange={handleChange} defaultValue={formData.password} className="form-control" placeholder="Contraseña"
+                            id="floatingTextareaPassword" />
+                        <label htmlFor="floatingTextareaPassword">Contraseña</label>
+                    </div>
 
-                <div className="mt-3 d-flex justify-content-center">
-                    <div className="d-block">
-                        <div className="d-flex justify-content-center mb-4">
-                            <button type="submit" className="btn btn-primary btn-sm"><span>Ingresar</span></button>
+                    <div className="mt-3 d-flex justify-content-center">
+                        <div className="d-block">
+                            <div className="d-flex justify-content-center mb-4">
+                                <button type="submit" className="btn btn-primary btn-sm"><span>Ingresar</span></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        </>
     );
 }

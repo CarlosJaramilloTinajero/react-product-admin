@@ -1,7 +1,7 @@
 import axios from "axios";
+import { APP_DEBUG } from "../constants";
 
-const production = true;
-const baseURL = production ? 'https://api.carlosjaramillo.beauty/api/' : 'http://127.0.0.1:8000/api/';
+const baseURL = !APP_DEBUG ? 'https://api.carlosjaramillo.beauty/api/' : 'http://127.0.0.1:8000/api/';
 
 const axiosC = axios.create({
     baseURL: baseURL,
@@ -23,7 +23,7 @@ const loadData = async ({ url = '', method = '', data = {}, useToken = true }) =
             headers
         });
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

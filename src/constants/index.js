@@ -21,6 +21,12 @@ export const FORMDATAMODALBRANDCONST = {
 
 export const FORMDATAMODALCATEGORYCONST = {
     name: '',
+    departament_id: null,
+    type: 'update_modal'
+};
+
+export const FORMDATAMODALDEPARTAMENTCONST = {
+    name: '',
     type: 'update_modal'
 };
 
@@ -30,6 +36,6 @@ export const FORMDATAMODALSUBCATEGORYCONST = {
     type: 'update_modal'
 };
 
-export const APP_DEBUG = true;
+export const APP_DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 export const baseURL = APP_DEBUG ? '/' : '/products-hub-admin/';

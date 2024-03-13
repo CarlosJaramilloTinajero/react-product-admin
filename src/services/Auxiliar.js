@@ -6,8 +6,10 @@ export const fetchData = async ({ url, method, requestData = {} }) => {
         const { data } = await loadData({ url: url, method: method, data: requestData });
         return data && data.status ? data : null;
     } catch (error) {
-        console.log(error);
-        notify({ msg: 'Error en el servidor', type: 'error' });
+        // console.log(error);
+        if (error.response.status !== 401) {
+            notify({ msg: 'Error en el servidor', type: 'error' });
+        }
         return null;
     }
 }

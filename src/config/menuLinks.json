@@ -5,6 +5,11 @@
         "link": "productos"
     },
     {
+        "name": "Departamentos",
+        "icon": "fa-solid fa-ring",
+        "link": "departamentos"
+    },
+    {
         "name": "Categorias",
         "icon": "fa-solid fa-table-list",
         "link": "categorias"

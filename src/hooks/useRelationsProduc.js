@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react';
-import { getBrandsAPI, getCategoriesAPI, getSubcategoriesAPI } from '../services/apiService';
+import { getBrandsAPI, getCategoriesAPI, getDepartamentsAPI, getSubcategoriesAPI } from '../services/apiService';
 
 // Customs hooks
+export function useDepartaments() {
+    const [departaments, setDepartaments] = useState([]);
+
+    useEffect(() => {
+        getDepartamentsAPI().then(setDepartaments)
+    }, []);
+
+    return { departaments };
+}
+
 export function useCategories() {
     const [categories, setCategories] = useState([]);
 

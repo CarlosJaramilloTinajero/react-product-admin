@@ -1,35 +1,33 @@
 import { useState } from "react"
-import { deleteCategoryAPI } from "../../services/category/CRUDFecthCategory";
 import ModalDelete from "../ModalDelete";
-import { ModalAddUpdateCategory } from "./ModalAddUpdateCategory";
-import { FORMDATAMODALCATEGORYCONST } from "../../constants";
+import { deleteDepartamentAPI } from "../../services/departament/CRUDFecthDepartament";
+import {  FORMDATAMODALDEPARTAMENTCONST } from "../../constants";
+import { ModalAddUpdateDepartament } from "./ModalAddUpdateDepartament";
 
-export function ListCategories({ categories, page, perPage, getCategories }) {
-
-    // const { subcategories } = useRelationsProduct();
+export function ListDepartaments({ departaments, page, perPage, getDepartaments }) {
 
     // Modals
     const [funcDeleteModal, setFuncDeleteModal] = useState(() => () => { });
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const closeModalDelete = () => setShowDeleteModal(false);
-    const modalDeleteInfo = "Si se elimina la categoria tambien se eliminaran sus subcategorias";
+    const modalDeleteInfo = "Si se elimina el departamento tambien se eliminaran sus categorias y subcategorias";
     const [showAddUpdateModal, setShowAddUpdateModal] = useState(false);
     const closeAddUpdateModal = () => setShowAddUpdateModal(false);
     const [formDataModal, setFormDataModal] = useState(null);
 
-    const afterUpdatAddCategory = () => {
+    const afterUpdatAddDepartament = () => {
         closeAddUpdateModal();
-        getCategories();
+        getDepartaments();
     }
 
     // Handle
-    const handleClickDeleteCategory = id => {
+    const handleClickDeleteDepartament = id => {
         setShowDeleteModal(true);
         setFuncDeleteModal(() => () => {
-            deleteCategoryAPI({
+            deleteDepartamentAPI({
                 id,
                 funcSuccess: () => {
-                    getCategories();
+                    getDepartaments();
                     closeModalDelete();
                 },
                 showNotify: true
@@ -37,40 +35,39 @@ export function ListCategories({ categories, page, perPage, getCategories }) {
         })
     }
 
-    const handleClickUpdatecategory = category => {
+    const handleClickUpdateDepartament = departament => {
         setShowAddUpdateModal(true);
         let aux = {};
 
-        Object.entries(FORMDATAMODALCATEGORYCONST).map(([index, value]) => {
+        Object.entries(FORMDATAMODALDEPARTAMENTCONST).map(([index, value]) => {
             if (index === 'type') {
                 aux[index] = value;
                 return;
             }
 
-            if (category[index]) aux[index] = category[index];
+            if (departament[index]) aux[index] = departament[index];
         });
 
-        aux['id'] = category.id;
+        aux['id'] = departament.id;
         setFormDataModal(aux);
     }
 
     return (
         <>
             {
-                categories.map((category, index) => (
-                    <tr key={category.id}>
+                departaments.map((departament, index) => (
+                    <tr key={departament.id}>
                         <td>{(index + 1) + ((page - 1) * perPage)}</td>
-                        <td>{category.name}</td>
-                        <td>{category.departament ? category.departament.name : 'NAN'}</td>
-                        <td>{category.id}</td>
+                        <td>{departament.name}</td>
+                        <td>{departament.id}</td>
                         <td>
                             <div className="dropdown">
                                 <button className="ps-4 pe-4 btn rounded-0 btn-sm mt-2 btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Acciones
                                 </button>
                                 <ul className="dropdown-menu rounded-0">
-                                    <li><a className="dropdown-item" onClick={() => handleClickDeleteCategory(category.id)}>Eliminar</a></li>
-                                    <li><a className="dropdown-item" onClick={() => handleClickUpdatecategory(category)}>Actualizar</a></li>
+                                    <li><a className="dropdown-item" onClick={() => handleClickDeleteDepartament(departament.id)}>Eliminar</a></li>
+                                    <li><a className="dropdown-item" onClick={() => handleClickUpdateDepartament(departament)}>Actualizar</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -78,11 +75,11 @@ export function ListCategories({ categories, page, perPage, getCategories }) {
                 ))
             }
             {
-                showDeleteModal && <ModalDelete closeModal={closeModalDelete} deleteFunction={funcDeleteModal} title="¿Esta seguro de eliminar la categoria?" info={modalDeleteInfo} />
+                showDeleteModal && <ModalDelete closeModal={closeModalDelete} deleteFunction={funcDeleteModal} title="¿Esta seguro de eliminar el departamento?" info={modalDeleteInfo} />
             }
 
             {
-                showAddUpdateModal && <ModalAddUpdateCategory afterAddUpdate={afterUpdatAddCategory} closeModal={closeAddUpdateModal} initialFormdata={formDataModal} />
+                showAddUpdateModal && <ModalAddUpdateDepartament afterAddUpdate={afterUpdatAddDepartament} closeModal={closeAddUpdateModal} initialFormdata={formDataModal} />
 
             }
         </>

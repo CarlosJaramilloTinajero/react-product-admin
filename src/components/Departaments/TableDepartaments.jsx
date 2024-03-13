@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
-import { getCategoriesAPI } from "../../services/category/CRUDFecthCategory";
-import { ListCategories } from "./ListCategories";
-import Pagination from "../Pagination";
-import { FiltersCategory } from "./FiltersCategory";
-import { ModalAddUpdateCategory } from "./ModalAddUpdateCategory";
+import { useState, useEffect } from 'react';
+import { getDepartamentsAPI } from '../../services/departament/CRUDFecthDepartament';
+import Pagination from '../Pagination';
+import { FiltersDepartaments } from './FiltersDepartaments';
+import { ListDepartaments } from './ListDepartaments';
+import { ModalAddUpdateDepartament } from './ModalAddUpdateDepartament';
 
-export function TableCategories({ }) {
-
+export function TableDepartaments() {
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(0);
-    const [categories, setCategories] = useState([]);
+    const [departaments, setDepartaments] = useState([]);
     const [filters, setFilters] = useState({
         search: '',
         orderBy: '',
@@ -26,22 +25,22 @@ export function TableCategories({ }) {
     const closeModalAddUpdate = () => setShowAddUpdateModal(false);
 
     const afterAddUpdate = () => {
-        getCategories();
+        getDepartaments();
         closeModalAddUpdate();
     }
 
     useEffect(() => {
-        getCategories();
+        getDepartaments();
     }, [page, filters]);
 
-    const getCategories = () => {
-        getCategoriesAPI({
+    const getDepartaments = () => {
+        getDepartamentsAPI({
             filters,
             page,
             perPage: filters.perPage,
             funcSuccess: response => {
                 const { data } = response;
-                setCategories(data.data);
+                setDepartaments(data.data);
                 setPages(data.last_page)
             }
         })
@@ -59,14 +58,14 @@ export function TableCategories({ }) {
         <>
             <section className="container-view-header">
                 <div className="title-view">
-                    <p>Lista de categorias</p>
+                    <p>Lista de departamentos</p>
                 </div>
                 <div className="button-actions">
                     <button className="btn btn-primary btn-sm" onClick={() => { setShowAddUpdateModal(true) }}>Agregar</button>
                 </div>
             </section>
 
-            <FiltersCategory setFilter={setFilterValue} />
+            <FiltersDepartaments setFilter={setFilterValue} />
 
             <div className="table-responsive p-4 pt-0 mt-0">
 
@@ -86,13 +85,12 @@ export function TableCategories({ }) {
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Departamento</th>
                             <th>ID</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <ListCategories getCategories={getCategories} page={page} perPage={filters.perPage} categories={categories} />
+                        <ListDepartaments getDepartaments={getDepartaments} page={page} perPage={filters.perPage} departaments={departaments} />
                     </tbody>
                 </table>
                 {
@@ -100,7 +98,7 @@ export function TableCategories({ }) {
                 }
             </div>
             {
-                showAddUpdateModal && <ModalAddUpdateCategory afterAddUpdate={afterAddUpdate} closeModal={closeModalAddUpdate} />
+                showAddUpdateModal && <ModalAddUpdateDepartament afterAddUpdate={afterAddUpdate} closeModal={closeModalAddUpdate} />
             }
         </>
     );

@@ -13,6 +13,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { redirect } from "react-router-dom";
 import { LoginView } from './views/auth/LoginView';
 import { baseURL } from './constants';
+import { DepartamentView } from './views/departament/DepartamentView';
 
 function App() {
   const requiredAuth = async () => {
@@ -40,6 +41,11 @@ function App() {
     {
       path: 'productos',
       element: <MasterLayout children={<ProductView />} />,
+      loader: requiredAuth
+    },
+    {
+      path: 'departamentos',
+      element: <MasterLayout children={<DepartamentView />} />,
       loader: requiredAuth
     },
     {

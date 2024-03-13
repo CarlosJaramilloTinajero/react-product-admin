@@ -601,9 +601,21 @@ label,
     text-decoration: none !important;
 }
 
+/* login */
+.login-back {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(142deg, rgba(103, 253, 255, 1) 40%, rgba(0, 31, 139, 1) 100%);
+}
+
 /* Form container */
 .container-form {
     position: absolute;
+    z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -620,7 +632,9 @@ label,
     text-align: center;
     color: white;
     font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
     text-shadow: 0 0 15px rgba(255, 255, 255, .4);
 }
 

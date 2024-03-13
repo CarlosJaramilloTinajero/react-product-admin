@@ -1,34 +1,31 @@
 import { useState } from "react"
-import { addCategoryAPI, updateCategoryAPI } from "../../services/category/CRUDFecthCategory";
 import { Modal, Button } from "react-bootstrap";
-import { useDepartaments } from '../../hooks/useRelationsProduc';
+import { addDepartamentAPI, updateDepartamentAPI } from "../../services/departament/CRUDFecthDepartament";
 
-export function ModalAddUpdateCategory({ afterAddUpdate, initialFormdata, closeModal }) {
-    const { departaments } = useDepartaments();
+export function ModalAddUpdateDepartament({ afterAddUpdate, initialFormdata, closeModal }) {
 
     const [formData, setFormData] = useState(initialFormdata || {
         name: '',
-        departament_id: '',
         type: 'add-modal'
     });
 
     const typeModal = formData.type === 'add-modal' ? 'Agregar' : 'Actualizar';
-    const title = `${typeModal} categoria`;
+    const title = `${typeModal} departamento`;
 
     const handleSubmit = e => {
         e.preventDefault();
-        addUpdateCategory();
+        addUpdateDepartament();
     }
 
-    const addUpdateCategory = () => {
+    const addUpdateDepartament = () => {
         if (formData.type === 'add-modal') {
-            addCategoryAPI({
+            addDepartamentAPI({
                 requestData: formData,
                 showNotify: true,
                 funcSuccess: afterAddUpdate
             });
         } else {
-            updateCategoryAPI({
+            updateDepartamentAPI({
                 requestData: formData,
                 id: formData.id,
                 funcSuccess: afterAddUpdate,
@@ -57,21 +54,6 @@ export function ModalAddUpdateCategory({ afterAddUpdate, initialFormdata, closeM
                         <label className="form-label">Nombre</label>
                         <input type="text" required defaultValue={formData.name ? formData.name : ''} name="name" onChange={handleChange} className="form-control" />
                     </div>
-
-                    {
-                        departaments.length > 0 &&
-                        <div className="mb-3">
-                            <label className="form-label">Departamento</label>
-                            <select name="departament_id" onChange={handleChange} defaultValue={formData.departament_id} className="form-select">
-                                <option value="">Seleccione un departamento</option>
-                                {
-                                    departaments.map(value => (
-                                        <option key={value.id} value={value.id}>{value.name}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                    }
                     <div className="d-flex justify-content-start">
                         <Button variant="primary" type="submit">
                             {typeModal}
