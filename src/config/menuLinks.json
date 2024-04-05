@@ -2,26 +2,37 @@
     {
         "name": "Productos",
         "icon": "fa-solid fa-store",
-        "link": "productos"
+        "childrens": [
+            {
+                "name": "Productos",
+                "icon": "fa-solid fa-store",
+                "link": "productos"
+            },
+            {
+                "name": "Departamentos",
+                "icon": "fa-solid fa-ring",
+                "link": "departamentos"
+            },
+            {
+                "name": "Categorias",
+                "icon": "fa-solid fa-table-list",
+                "link": "categorias"
+            },
+            {
+                "name": "Subcategiras",
+                "icon": "fa-solid fa-rectangle-list",
+                "link": "subcategorias"
+            },
+            {
+                "name": "Marca",
+                "icon": "fa-solid fa-ring",
+                "link": "marcas"
+            }
+        ]
     },
     {
-        "name": "Departamentos",
-        "icon": "fa-solid fa-ring",
-        "link": "departamentos"
-    },
-    {
-        "name": "Categorias",
-        "icon": "fa-solid fa-table-list",
-        "link": "categorias"
-    },
-    {
-        "name": "Subcategiras",
-        "icon": "fa-solid fa-rectangle-list",
-        "link": "subcategorias"
-    },
-    {
-        "name": "Marca",
-        "icon": "fa-solid fa-ring",
-        "link": "marcas"
+        "name": "Dashboard",
+        "icon": "fa-solid fa-house",
+        "link": "/"
     }
 ]

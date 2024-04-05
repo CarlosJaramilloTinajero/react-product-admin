@@ -33,7 +33,7 @@ export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) 
 
             <section className="user-info">
                 <div className="img-name">
-                    <img className="rounded-circle" src="https://ui-avatars.com/api/?name=Admin&size=100" alt="img-user" />
+                    <img className="rounded-circle" src={`https://ui-avatars.com/api/?name=${userName}&size=100`} alt="img-user" />
                 </div>
 
                 <p className="name d-none d-md-block">
@@ -42,7 +42,7 @@ export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) 
                 </p>
 
                 <div className="user-info-target">
-                    <p className="title">Hola admin!</p>
+                    <p className="title">Hola {userName}!</p>
                     <div className="options">
                         <div className="option" onClick={logoutUser}>
                             <i className="fa-solid fa-power-off"></i> <span>Salir</span>

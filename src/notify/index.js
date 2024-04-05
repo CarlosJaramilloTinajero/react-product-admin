@@ -12,8 +12,8 @@ export const notify = ({ msg = '', type = 'default' }) => {
         case 'loading':
             return toast.loading(msg);
         case 'default':
-        default:
             return toast(msg)
+        default:
     }
 };
 

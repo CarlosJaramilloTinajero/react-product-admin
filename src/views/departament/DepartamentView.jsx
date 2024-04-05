@@ -3,7 +3,9 @@ import { TableDepartaments } from "../../components/Departaments/TableDepartamen
 export function DepartamentView() {
     return (
         <div className="container-view">
-            <TableDepartaments />
+            <section className="container-view-content">
+                <TableDepartaments />
+            </section>
         </div>
     )
 }

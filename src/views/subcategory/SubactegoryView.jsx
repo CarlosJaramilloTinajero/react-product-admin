@@ -2,7 +2,9 @@ import { TableSubcategories } from '../../components/Subcategories/TableSubcateg
 export function SubacetgoryView() {
     return (
         <div className="container-view">
-            <TableSubcategories />
+            <section className="container-view-content">
+                <TableSubcategories />
+            </section>
         </div>
     );
 }
