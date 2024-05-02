@@ -2,14 +2,16 @@ import { makeApiRequest } from "../auxiliar";
 
 export const getDepartamentsAPI = ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({
-        url: `/departaments?page=${page}&perPage=${perPage}`,
+        url: `/public/departaments?page=${page}&perPage=${perPage}`,
         method: 'post',
         funcSuccess,
         funcError,
         showNotify,
         msgSuccess: 'Departamentos cargados correctamente',
         msgError: 'Error al cargar las departamentos',
-        requestData: filters
+        requestData: filters,
+        usePublicToken: true,
+        useToken: false
     })
 };
 

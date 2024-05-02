@@ -2,14 +2,16 @@ import { makeApiRequest } from "../auxiliar";
 
 export const getCategoriesAPI = ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({
-        url: `/categories?page=${page}&perPage=${perPage}`,
+        url: `/public/categories?page=${page}&perPage=${perPage}`,
         method: 'post',
         funcSuccess,
         funcError,
         showNotify,
         msgSuccess: 'Categorias cargadas correctamente',
         msgError: 'Error al cargar las categorias',
-        requestData: filters
+        requestData: filters,
+        usePublicToken: true,
+        useToken: false
     })
 };
 

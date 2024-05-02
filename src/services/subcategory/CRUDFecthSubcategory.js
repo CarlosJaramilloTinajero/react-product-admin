@@ -2,14 +2,16 @@ import { makeApiRequest } from "../Auxiliar";
 
 export const getSubcategoriesAPI = ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({
-        url: `/subcategories?page=${page}&perPage=${perPage}`,
+        url: `/public/subcategories?page=${page}&perPage=${perPage}`,
         method: 'post',
         funcSuccess,
         funcError,
         requestData: filters,
         showNotify,
         msgSuccess: 'Subcategorias cargadas correctamente',
-        msgError: 'Error al cargar las subcategorias'
+        msgError: 'Error al cargar las subcategorias',
+        usePublicToken: true,
+        useToken: false
     });
 };
 

@@ -2,14 +2,16 @@ import { makeApiRequest } from '../Auxiliar';
 
 export const getBrandsAPI = ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({
-        url: `/brands?page=${page}&perPgae=${perPage}`,
+        url: `/public/brands?page=${page}&perPgae=${perPage}`,
         method: 'post',
         funcSuccess,
         funcError,
         showNotify,
         msgSuccess: 'Marcas cargadas correctamente',
         msgError: 'Error al cargar las marcas',
-        requestData: filters
+        requestData: filters,
+        usePublicToken: true,
+        useToken: false
     });
 }
 

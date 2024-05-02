@@ -1,9 +1,9 @@
 import { notify, updateNotify } from "../notify";
 import loadData from "./api";
 
-export const fetchData = async ({ url, method, requestData = {} }) => {
+export const fetchData = async ({ url, method, requestData = {}, useToken = true, usePublicToken = false }) => {
     try {
-        const { data } = await loadData({ url: url, method: method, data: requestData });
+        const { data } = await loadData({ url: url, method: method, data: requestData, usePublicToken, useToken });
         if (data.mgs) {
             notify({ msg: data.mgs, type: 'error' });
         }
@@ -17,12 +17,12 @@ export const fetchData = async ({ url, method, requestData = {} }) => {
     }
 }
 
-export const makeApiRequest = async ({ url, method, requestData = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false, msgSuccess = '', msgError = '' }) => {
+export const makeApiRequest = async ({ url, method, requestData = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false, msgSuccess = '', msgError = '', useToken = true, usePublicToken = false }) => {
     let idNotify = null;
     if (showNotify) idNotify = notify({ msg: 'Cargando...', type: 'loading' });
 
     try {
-        const data = await fetchData({ url, method, requestData });
+        const data = await fetchData({ url, method, requestData, useToken, usePublicToken });
 
         if (data && data.status) {
             if (idNotify) updateNotify({ id: idNotify, msg: msgSuccess, type: 'success' });

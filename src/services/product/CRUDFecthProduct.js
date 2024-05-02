@@ -55,13 +55,15 @@ export const deleteProductByID = async ({ id, funcSuccess = () => { }, funcError
 
 export const getProductsAPI = async ({ page = 0, perPage = 30, filters = {}, funcSuccess = () => { }, funcError = () => { }, showNotify = false }) => {
     makeApiRequest({
-        url: 'products?page=' + page + '&perPage=' + perPage,
+        url: 'public/products?page=' + page + '&perPage=' + perPage,
         method: 'post',
         funcSuccess,
         funcError,
         showNotify,
         msgSuccess: 'Productos cargados correctamente',
         msgError: 'Error al cargar los productos',
-        requestData: filters
+        requestData: filters,
+        usePublicToken: true,
+        useToken: false
     });
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_API_CONTEX, URL_API_PROD } from "../constants";
+import { TOKEN_PUBLIC_API, URL_API_CONTEX, URL_API_PROD } from "../constants";
 
 const baseURL = URL_API_CONTEX;
 
@@ -10,11 +10,12 @@ const axiosC = axios.create({
     },
 })
 
-const loadData = async ({ url = '', method = '', data = {}, useToken = true }) => {
+const loadData = async ({ url = '', method = '', data = {}, useToken = true, usePublicToken = false }) => {
     try {
-        const headers = useToken ? {
-            Authorization: localStorage.getItem('token')
-        } : {};
+        const headers = {};
+
+        if (useToken) headers['Authorization'] = localStorage.getItem('token');
+        if (usePublicToken) headers['token'] = TOKEN_PUBLIC_API;
 
         return await axiosC({
             method,

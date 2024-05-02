@@ -10,6 +10,8 @@ export const URL_API_PROD = 'https://api.carlosjaramillo.beauty/api/';
 
 export const URL_API_CONTEX = APP_DEBUG ? URL_API_DEBUG : URL_API_PROD;
 
+export const TOKEN_PUBLIC_API = '$2y$10$qxrB6JHv6MWnI.Z3pDWD8OpI1dwxyAVpEXwilqSsPrACCkcSNVZLS';
+
 // Forms
 export const FORMDATAMODALPRODUCTCONST = {
     sku: '',
