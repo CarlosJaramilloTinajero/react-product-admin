@@ -5,6 +5,7 @@ import './index.css'
 
 // Bootstrap-react
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // Toastify
 import { ToastContainer } from 'react-toastify';

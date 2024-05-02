@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { updateProduct, addProduct } from '../../services/product/CRUDFecthProduct';
 import { useCategories, useSubcategories, useBrands } from '../../hooks/useRelationsProduc';
+import { FORMDATAMODALPRODUCTCONST } from '../../constants';
 
 export default function ModalAddUpdateProduct({ closeModal, initialFormData, afterAddUpdate }) {
     const { categories } = useCategories();
@@ -10,17 +11,7 @@ export default function ModalAddUpdateProduct({ closeModal, initialFormData, aft
 
     // Estado con el objeto para el formulario
     const [formData, setFormData] = useState(initialFormData || {
-        sku: '',
-        name: '',
-        price: 0,
-        largo: 0,
-        alto: 0,
-        ancho: 0,
-        peso: 0,
-        img_path: '',
-        category_id: null,
-        subcategory_id: null,
-        brand_id: null,
+        ...FORMDATAMODALPRODUCTCONST,
         type: 'add_modal'
     });
 
@@ -50,17 +41,7 @@ export default function ModalAddUpdateProduct({ closeModal, initialFormData, aft
                 formData, showNotify: true, funcSuccess: () => {
                     afterAddUpdate();
                     setFormData({
-                        sku: '',
-                        name: '',
-                        price: 0,
-                        largo: 0,
-                        alto: 0,
-                        ancho: 0,
-                        peso: 0,
-                        img_path: '',
-                        category_id: null,
-                        subcategory_id: null,
-                        brand_id: null,
+                        ...FORMDATAMODALPRODUCTCONST,
                         type: 'add_modal'
                     });
                 }

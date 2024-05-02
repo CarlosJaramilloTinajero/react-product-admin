@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 import { Footer } from "./Footer";
@@ -8,19 +8,18 @@ export function MasterLayout({ children }) {
     const openCloseSidebar = () => setExpandedSidebar(!expandedSidebar);
     const [canExpandSidebar, setCanExpandSidebar] = useState(true);
 
-    useEffect(() => {
-
-        // Verificar si el tamaño de la ventana es menor a 700px para mostrar o no el sidebar despegable
-        const handleResize = () => {
-            let widthWindow = window.innerWidth;
-            if (widthWindow <= 700) {
-                setCanExpandSidebar(false);
-                setExpandedSidebar(false);
-            } else {
-                setCanExpandSidebar(true);
-            }
+    // Verificar si el tamaño de la ventana es menor a 700px para mostrar o no el sidebar despegable
+    const handleResize = useCallback(() => {
+        let widthWindow = window.innerWidth;
+        if (widthWindow <= 700) {
+            setCanExpandSidebar(false);
+            setExpandedSidebar(false);
+        } else {
+            setCanExpandSidebar(true);
         }
+    }, []);
 
+    useEffect(() => {
         // Agregar el event listener cuando se monta el componente
         window.addEventListener('resize', handleResize);
 
@@ -36,9 +35,9 @@ export function MasterLayout({ children }) {
         <>
             <Sidebar expandedSidebar={expandedSidebar} />
             <Navbar openCloseSidebar={openCloseSidebar} canExpandSidebar={canExpandSidebar} expandedSidebar={expandedSidebar} />
-            <div style={{ marginLeft: expandedSidebar ? '265px' : '80px' }} className="cotainer-master">
+            <section style={{ marginLeft: expandedSidebar ? '265px' : '80px' }} className="cotainer-master">
                 {children}
-            </div>
+            </section>
             <Footer expandedSidebar={expandedSidebar} />
         </>
     );

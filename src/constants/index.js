@@ -1,3 +1,10 @@
+export const APP_DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+export const baseURL = APP_DEBUG ? '/' : '/products-hub-admin/';
+
+export const URLBase = APP_DEBUG ? '' : '/products-hub-admin';
+
+// Forms
 export const FORMDATAMODALPRODUCTCONST = {
     sku: '',
     name: '',
@@ -35,9 +42,3 @@ export const FORMDATAMODALSUBCATEGORYCONST = {
     category_id: '',
     type: 'update_modal'
 };
-
-export const APP_DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
-export const baseURL = APP_DEBUG ? '/' : '/products-hub-admin/';
-
-export const URLBase = APP_DEBUG ? '' : '/products-hub-admin';

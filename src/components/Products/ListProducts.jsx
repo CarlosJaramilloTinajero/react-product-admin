@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ModalAddUpdateProduct from "./ModalAddUpdateProduct";
 import ModalDelete from "../ModalDelete";
 import { deleteProductByID } from "../../services/product/CRUDFecthProduct";
@@ -27,14 +27,14 @@ export default function ListProducts({ products, perPage, getProducts, page }) {
 
     const closeDeleteModal = () => setShowDeleteModal(false);
 
-    const deleteProduct = id => {
+    const deleteProduct = useCallback(id => {
         deleteProductByID({
             id: id, showNotify: true, funcSuccess: () => {
                 getProducts();
                 setShowDeleteModal(false);
             }
         })
-    }
+    }, [getProducts]);
 
     const handleClickDeleteProduct = product => {
         setShowDeleteModal(true);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) {
@@ -10,11 +10,8 @@ export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) 
         navigate('/login');
     };
 
-    const [userName, setUserName] = useState('User');
+    const userName = useRef(localStorage.getItem('user_name') || 'User');
 
-    useEffect(() => {
-        setUserName(localStorage.getItem('user_name') || userName);
-    }, []);
     return (
         <nav className="navbar">
             {
@@ -33,16 +30,16 @@ export function Navbar({ openCloseSidebar, expandedSidebar, canExpandSidebar }) 
 
             <section className="user-info">
                 <div className="img-name">
-                    <img className="rounded-circle" src={`https://ui-avatars.com/api/?name=${userName}&size=100`} alt="img-user" />
+                    <img className="rounded-circle" src={`https://ui-avatars.com/api/?name=${userName.current}&size=100`} alt="img-user" />
                 </div>
 
                 <p className="name d-none d-md-block">
-                    <strong>{userName}</strong> <br />
-                    {userName === 'admin' ? 'Administrador' : userName}
+                    <strong>{userName.current}</strong> <br />
+                    {userName.current === 'admin' ? 'Administrador' : userName.current}
                 </p>
 
                 <div className="user-info-target">
-                    <p className="title">Hola {userName}!</p>
+                    <p className="title">Hola {userName.current}!</p>
                     <div className="options">
                         <div className="option" onClick={logoutUser}>
                             <i className="fa-solid fa-power-off"></i> <span>Salir</span>
