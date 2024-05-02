@@ -4,6 +4,12 @@ export const baseURL = APP_DEBUG ? '/' : '/products-hub-admin/';
 
 export const URLBase = APP_DEBUG ? '' : '/products-hub-admin';
 
+export const URL_API_DEBUG = 'http://127.0.0.1:8000/api/';
+
+export const URL_API_PROD = 'https://api.carlosjaramillo.beauty/api/';
+
+export const URL_API_CONTEX = APP_DEBUG ? URL_API_DEBUG : URL_API_PROD;
+
 // Forms
 export const FORMDATAMODALPRODUCTCONST = {
     sku: '',

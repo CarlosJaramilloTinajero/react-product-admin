@@ -1,8 +1,7 @@
 import axios from "axios";
-import { APP_DEBUG } from "../constants";
+import { URL_API_CONTEX, URL_API_PROD } from "../constants";
 
-const baseURL = !APP_DEBUG ? 'https://api.carlosjaramillo.beauty/api/' : 'http://127.0.0.1:8000/api/';
-// const baseURL = 'https://api.carlosjaramillo.beauty/api/';
+const baseURL = URL_API_CONTEX;
 
 const axiosC = axios.create({
     baseURL: baseURL,
