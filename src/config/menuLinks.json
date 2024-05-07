@@ -31,6 +31,16 @@
         ]
     },
     {
+        "name": "CMS",
+        "icon": "fa-solid fa-folder-open",
+        "childrens": [
+            {
+                "name": "Banners",
+                "link": "banners"
+            }
+        ]
+    },
+    {
         "name": "Dashboard",
         "icon": "fa-solid fa-house",
         "link": "/"

@@ -7,6 +7,7 @@ import { BrandView } from '../views/brand/BrandView';
 import { SubacetgoryView } from '../views/subcategory/SubactegoryView';
 import { LoginView } from '../views/auth/LoginView';
 import { DepartamentView } from '../views/departament/DepartamentView';
+import BannerView from '../views/banner/BannerView';
 
 // Router
 import { createBrowserRouter } from 'react-router-dom';
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
   {
     path: 'marcas',
     element: <MasterLayout children={<BrandView />} />,
+    loader: requiredAuth
+  },
+  {
+    path: 'banners',
+    element: <MasterLayout children={<BannerView />} />,
     loader: requiredAuth
   },
   {

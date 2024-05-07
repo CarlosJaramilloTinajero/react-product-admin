@@ -50,3 +50,12 @@ export const FORMDATAMODALSUBCATEGORYCONST = {
     category_id: '',
     type: 'update_modal'
 };
+
+export const FORMDATAMODALBANNERCONST = {
+    name: '',
+    device: '',
+    section: '',
+    position: null,
+    image: null,
+    type: 'update_modal'
+};
