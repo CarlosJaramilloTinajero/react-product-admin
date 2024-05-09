@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getCategoriesAPI } from "../../services/category/CRUDFecthCategory";
 import { ListCategories } from "./ListCategories";
 import Pagination from "../Pagination";
 import { FiltersCategory } from "./FiltersCategory";
 import { ModalAddUpdateCategory } from "./ModalAddUpdateCategory";
+import debounce from "just-debounce-it";
 
 export function TableCategories({ }) {
 
@@ -47,14 +48,14 @@ export function TableCategories({ }) {
         })
     };
 
-    const setFilterValue = ({ name = '', value = '' }) => {
+    const setFilterValue = useCallback(debounce(({ name = '', value = '' }) => {
         if (!name) return;
         setPage(1);
         setFilters({
             ...filters,
             [name]: value
         });
-    }
+    }, 500), [setPage, setFilters, filters]);
     return (
         <>
             <section className="container-view-header">

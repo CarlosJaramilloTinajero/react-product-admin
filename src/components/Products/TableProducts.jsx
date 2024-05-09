@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Pagination from "../Pagination";
 import FiltersProducts from "./FiltersProducts";
 import ModalAddUpdateProduct from './ModalAddUpdateProduct';
 import ListProducts from "./ListProducts";
 import { getProductsAPI } from '../../services/product/CRUDFecthProduct';
+import debounce from "just-debounce-it";
 
 function TableProducts() {
     const [products, setProducts] = useState([]);
@@ -70,7 +71,7 @@ function TableProducts() {
     }
 
     // Setear el valor a la propiedad en los filtros de la tabla
-    const setFiltersTo = ({ event = { name: '', value: '' } }) => {
+    const setFiltersTo = useCallback(debounce(({ event = { name: '', value: '' } }) => {
         if (!event.name) return;
         setPage(1);
         setFilters(
@@ -78,7 +79,7 @@ function TableProducts() {
                 ...filters,
                 [event.name]: event.name === 'brands' ? [event.value || null] : event.value
             });
-    };
+    }, 500), [setPage, setFilters, filters]);
 
     return (
         <>

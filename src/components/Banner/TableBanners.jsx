@@ -4,6 +4,7 @@ import Pagination from "../Pagination";
 import { ListBanners } from "./ListBanners";
 import { FiltersBanner } from "./FiltersBanner";
 import { ModalAddUpdateBanner } from "./ModalAddUpdateBanner";
+import debounce from "just-debounce-it";
 
 export default function TableBanners({ }) {
     const [page, setPage] = useState(1);
@@ -35,14 +36,14 @@ export default function TableBanners({ }) {
         setPage(page);
     }, [setPage]);
 
-    const setFilterValue = useCallback(({ name = '', value = '' }) => {
+    const setFilterValue = useCallback(debounce(({ name = '', value = '' }) => {
         if (!name) return;
         setPage(1);
         setFilters({
             ...filters,
             [name]: value
         });
-    }, [filters, setPage, setFilters]);
+    }, 300), [filters, setPage, setFilters]);
 
     // Modals
     const [showAddUpdateModal, setShowAddUpdateModal] = useState(false);

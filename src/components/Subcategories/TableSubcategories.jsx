@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { getSubcategoriesAPI } from "../../services/subcategory/CRUDFecthSubcategory";
 import { ListSubcategories } from "./ListSubcategories";
 import Pagination from "../Pagination";
 import { FiltersSubcategories } from "./FiltersSubcategories";
 import { ModalAddUpdateSubcategory } from "./ModalAddUpdateSubcategory";
+import debounce from "just-debounce-it";
 
 export function TableSubcategories({ }) {
 
@@ -47,14 +48,14 @@ export function TableSubcategories({ }) {
         window.scrollTo(0, 0);
     };
 
-    const setFilterValue = ({ name = '', value = '' }) => {
+    const setFilterValue = useCallback(debounce(({ name = '', value = '' }) => {
         if (!name) return;
         setPage(1);
         setFilters({
             ...filters,
             [name]: value
         });
-    }
+    }, 500), [setPage, setFilters, filters])
 
     return (
         <>

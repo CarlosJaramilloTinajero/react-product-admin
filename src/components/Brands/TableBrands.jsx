@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getBrandsAPI } from "../../services/brand/CRUDFecthBrand";
 import { FiltersBrand } from "./FiltersBrand";
 import { ListBrand } from "./ListBrands";
 import Pagination from "../Pagination";
 import { ModalAddUpdateBrand } from "./ModalAddUpdateBrand";
+import debounce from "just-debounce-it";
 
 export function TableBrands({ }) {
     const [page, setPage] = useState(1);
@@ -19,29 +20,29 @@ export function TableBrands({ }) {
         getBrands();
     }, [page, filters]);
 
-    const getBrands = () => {
-        getBrandsAPI({ page, perPage: filters.perPage, filters, funcSuccess: handleSuccessAPI })
-    };
-
-    const handleSuccessAPI = (response) => {
+    const handleSuccessAPI = useCallback((response) => {
         const { data } = response;
         setBrands(data.data);
         setPages(data.last_page)
-    };
+    }, [setBrands, setPage]);
 
-    const gotoPage = page => {
+    const getBrands = useCallback(() => {
+        getBrandsAPI({ page, perPage: filters.perPage, filters, funcSuccess: handleSuccessAPI })
+    }, [page, filters, handleSuccessAPI, getBrandsAPI]);
+
+    const gotoPage = useCallback(page => {
         window.scrollTo(0, 0);
         setPage(page);
-    };
+    }, [setPage]);
 
-    const setFilterValue = ({ name = '', value = '' }) => {
+    const setFilterValue = useCallback(debounce(({ name = '', value = '' }) => {
         if (!name) return;
         setPage(1);
         setFilters({
             ...filters,
             [name]: value
         });
-    }
+    }, 500), [setPage, setFilters, filters]);
 
     // Modals
     const [showAddUpdateModal, setShowAddUpdateModal] = useState(false);

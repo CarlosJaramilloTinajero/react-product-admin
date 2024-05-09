@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getDepartamentsAPI } from '../../services/departament/CRUDFecthDepartament';
 import Pagination from '../Pagination';
 import { FiltersDepartaments } from './FiltersDepartaments';
 import { ListDepartaments } from './ListDepartaments';
 import { ModalAddUpdateDepartament } from './ModalAddUpdateDepartament';
+import debounce from 'just-debounce-it';
 
 export function TableDepartaments() {
     const [page, setPage] = useState(1);
@@ -46,14 +47,14 @@ export function TableDepartaments() {
         })
     };
 
-    const setFilterValue = ({ name = '', value = '' }) => {
+    const setFilterValue = useCallback(debounce(({ name = '', value = '' }) => {
         if (!name) return;
         setPage(1);
         setFilters({
             ...filters,
             [name]: value
         });
-    }
+    }, 500), [setPage, setFilters, filters]);
     return (
         <>
             <section className="container-view-header">
